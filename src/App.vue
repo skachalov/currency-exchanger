@@ -1,10 +1,8 @@
 <template>
-  <auth-page-controller />
+    <router-view
+        :key="$route.fullPath">
+    </router-view>
 </template>
-
-<script setup>
-import AuthPageController from "@/controllers/AuthPageController"
-</script>
 
 <style>
     * {
