@@ -1,7 +1,7 @@
-abstract class WalletConnection {
+export default abstract class WalletConnection {
     provider: any
 
     abstract getProvider(): any
 
-    abstract getAccount(): void
+    abstract getAccount(): Promise<void>
 }

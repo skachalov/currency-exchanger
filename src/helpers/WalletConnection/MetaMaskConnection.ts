@@ -1,15 +1,16 @@
 import { ethers } from "ethers"
+import WalletConnection from "@/helpers/WalletConnection/WalletConnection"
 
 export default class MetaMaskConnection extends WalletConnection {
     getProvider(): any {
         if (!this.provider) {
-            this.provider = new ethers.providers.Web3Provider(window.etherium)
+            this.provider = new ethers.providers.Web3Provider(window.ethereum)
         }
 
         return this.provider
     }
 
-    getAccount(): void {
-        this.getProvider().send("eth_requestAccounts", [])
+    async getAccount(): Promise<void> {
+        await this.getProvider().send("eth_requestAccounts", [])
     }
 }
