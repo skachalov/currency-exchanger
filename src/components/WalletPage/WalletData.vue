@@ -7,6 +7,7 @@
         <wallet-data-item
             :title="'Address'"
             :data-item="address"
+            :to-copy="true"
         />
         <wallet-data-item
             :title="'Balance'"

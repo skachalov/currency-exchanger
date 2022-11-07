@@ -40,4 +40,8 @@ defineProps({
 .base-button:hover {
     background-color: rgba($base3, 0.95);
 }
+
+.base-button:active {
+    background-color: rgba($base3, 0.9);
+}
 </style>

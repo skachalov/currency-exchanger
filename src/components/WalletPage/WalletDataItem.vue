@@ -3,7 +3,11 @@
         <div class="item-title">
             {{ title }}
         </div>
-        <div class="item-value">
+        <div
+            class="item-value"
+            :class="{ 'to-copy': toCopy }"
+            @click="copy"
+        >
             {{ dataItem }}
         </div>
     </div>
@@ -11,11 +15,22 @@
 
 <script lang="ts" setup>
 import { defineProps } from "vue"
+import copyText from "@/helpers/copyText"
 
-defineProps({
+const props = defineProps({
     title: String,
-    dataItem: String
+    dataItem: String,
+    toCopy: {
+        type: Boolean,
+        default: false
+    }
 })
+
+function copy() {
+    if (props.toCopy) {
+        copyText(props.dataItem)
+    }
+}
 </script>
 
 <style scoped>
@@ -31,5 +46,8 @@ defineProps({
 }
 .item-value {
     font-family: "Gilroy Regular";
+}
+.to-copy {
+    cursor: pointer;
 }
 </style>
