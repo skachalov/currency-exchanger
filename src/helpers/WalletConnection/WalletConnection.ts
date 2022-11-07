@@ -3,5 +3,5 @@ export default abstract class WalletConnection {
 
     abstract getProvider(): any
 
-    abstract getAccount(): Promise<void>
+    abstract getAccount(): Promise<string>
 }

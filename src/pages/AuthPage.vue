@@ -1,13 +1,13 @@
 <template>
     <div id="auth-page-container">
         <div id="auth-wrapper">
-            <auth-button @click="setConnection" />
+            <base-button @click="setConnection" />
             <div class="warning-wrapper">
                 <transition name="base-warning-transition">
                     <base-warning
                         v-show="isFailed"
                     >
-                        Auth failed! Try again.
+                        Auth failed! Try it again.
                     </base-warning>
                 </transition>
             </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import AuthButton from "@/components/AuthPage/AuthButton"
+import BaseButton from "@/components/UI/BaseButton"
 import { defineProps, defineEmits } from "vue"
 import BaseWarning from "@/components/UI/BaseWarning"
 
