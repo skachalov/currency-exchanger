@@ -18,4 +18,18 @@
     #app {
         background-color: $bg;
     }
+
+    @font-face {
+        font-family: "Gilroy ExtraBold";
+        src: url("assets/fonts/gilroy-extrabold.ttf") format("truetype");
+        font-style: normal;
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: "Gilroy Regular";
+        src: url("assets/fonts/gilroy-regular.ttf") format("truetype");
+        font-style: normal;
+        font-weight: normal;
+    }
 </style>
