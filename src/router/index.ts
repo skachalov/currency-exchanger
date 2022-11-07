@@ -1,17 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
-import AuthPageController from "@/controllers/AuthPageController.vue"
-import WalletPageController from "@/controllers/WalletPageController.vue"
+import { routesList } from "@/router/routesList"
 
-const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/auth',
-        component: AuthPageController
-    },
-    {
-        path: '/wallet',
-        component: WalletPageController
-    }
-]
+const routes: Array<RouteRecordRaw> = [ ...routesList ]
 
 export default createRouter({
     history: createWebHistory(process.env.BASE_URL),

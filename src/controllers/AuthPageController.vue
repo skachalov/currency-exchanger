@@ -7,8 +7,8 @@
 
 <script setup>
 import AuthPage from "@/pages/AuthPage"
-import ConnectionFactory from "@/helpers/WalletConnection/ConnectionFactory"
 import { WalletType } from "@/helpers/WalletConnection/WalletType"
+import WalletConnectionFacade from "@/helpers/WalletConnectionFacade"
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 
@@ -17,10 +17,8 @@ const router = useRouter()
 
 async function setConnection() {
     try {
-        const connection = ConnectionFactory.GetWalletConnection(WalletType.MetaMask)
-        const provider = connection.getProvider()
-        await connection.getAccount()
-        router.push("/wallet")
+        await WalletConnectionFacade.ConnectWallet(WalletType.MetaMask)
+        await router.push("/wallet")
     }
     catch {
         isFailed.value = true
