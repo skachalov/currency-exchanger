@@ -1,7 +1,5 @@
 <template>
-    <router-view
-        :key="$route.fullPath">
-    </router-view>
+    <router-view />
 </template>
 
 <style lang="scss">
