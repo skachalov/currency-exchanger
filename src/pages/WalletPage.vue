@@ -6,6 +6,11 @@
                 :address="address"
                 :balance="balance"
             />
+            <base-button
+                style="margin-top: 20px"
+                :title="'send'"
+                :icon-name="'arrow-up'"
+            />
         </div>
     </div>
 </template>
@@ -13,6 +18,7 @@
 <script setup lang="ts">
 import { defineProps } from "vue"
 import WalletData from "@/components/WalletPage/WalletData.vue"
+import BaseButton from "@/components/UI/BaseButton.vue";
 
 defineProps({
     network: String,
@@ -37,6 +43,7 @@ defineProps({
     border-radius: 20px;
     background-color: $base1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 </style>
