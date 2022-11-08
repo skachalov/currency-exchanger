@@ -3,9 +3,7 @@
         id="wallet-loader"
         v-if="!isLoaded"
     >
-        <base-loader>
-            Getting wallet data...
-        </base-loader>
+        <base-loader :warning="'Getting wallet data'" />
     </div>
 
     <template v-else>

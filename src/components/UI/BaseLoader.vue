@@ -2,10 +2,28 @@
     <div class="base-loader">
         <div class="loader" />
         <div class="loader-warning">
-            <slot />
+            {{ warning + dots }}
         </div>
     </div>
 </template>
+
+<script lang="ts" setup>
+import {defineProps, onMounted, onUnmounted, ref} from "vue"
+
+defineProps({
+    warning: String
+})
+
+let dots = ref("")
+
+onMounted(() => {
+    setInterval(() => {
+        dots.value = dots.value.length < 3
+            ? dots.value + "."
+            : ""
+    }, 500)
+})
+</script>
 
 <style lang="scss" scoped>
 .base-loader {
