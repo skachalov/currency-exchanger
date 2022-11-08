@@ -8,8 +8,8 @@
 
 <style lang="scss" scoped>
 .base-button {
-    color: $base2;
-    background-color: $base1;
+    color: $base1;
+    background-color: $base3;
     width: 400px;
     height: 150px;
     border: none;
@@ -21,6 +21,6 @@
 }
 
 .base-button:hover {
-    background-color: rgba($base1, 0.95);
+    background-color: rgba($base3, 0.95);
 }
 </style>

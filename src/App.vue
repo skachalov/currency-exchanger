@@ -1,7 +1,9 @@
 <template>
-    <router-view
-        :key="$route.fullPath">
-    </router-view>
+    <div id="app-container">
+        <div id="app-wrapper">
+            <router-view />
+        </div>
+    </div>
 </template>
 
 <style lang="scss">
@@ -17,6 +19,24 @@
 
     #app {
         background-color: $bg;
+    }
+
+    #app-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #app-wrapper {
+        width: 800px;
+        height: 500px;
+        color: $base2;
+        border-radius: 20px;
+        background-color: $base1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     @font-face {
