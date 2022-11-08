@@ -1,6 +1,6 @@
 import AuthPageController from "@/controllers/AuthPageController.vue"
 import WalletPageController from "@/controllers/WalletPageController.vue"
-import SendPageController from "@/controllers/SendPageController.vue"
+import TransferPageController from "@/controllers/TransferPageController.vue"
 
 export const routesList = [
     {
@@ -12,7 +12,7 @@ export const routesList = [
         component: WalletPageController
     },
     {
-        path: "/send",
-        component: SendPageController
+        path: "/transfer",
+        component: TransferPageController
     }
 ]

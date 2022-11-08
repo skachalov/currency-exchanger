@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import SendPage from "@/pages/SendPage"
+import SendPage from "@/pages/TransferPage"
 </script>
 
 <style scoped>
