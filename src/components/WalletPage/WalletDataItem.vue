@@ -9,6 +9,7 @@
         >
             {{ dataItem }}
         </div>
+
         <div
             v-else
             class="item-value"
@@ -86,6 +87,9 @@ function mouseLeaveAction() {
 .helper-transition-enter-active,
 .helper-transition-leave-active {
     transition: all .5s ease;
+}
+.helper-transition-enter-active {
+    transition-delay: .1s;
 }
 .helper-transition-enter-from,
 .helper-transition-leave-to {

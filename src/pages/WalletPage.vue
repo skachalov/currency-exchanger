@@ -5,7 +5,9 @@
                 id="wallet-loader"
                 v-if="!isLoaded"
             >
-                <base-loader />
+                <base-loader>
+                    Getting wallet data...
+                </base-loader>
             </div>
 
             <template v-else>
