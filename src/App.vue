@@ -1,10 +1,15 @@
 <template>
     <div id="app-container">
         <div id="app-wrapper">
+            <base-header />
             <router-view />
         </div>
     </div>
 </template>
+
+<script setup>
+import BaseHeader from "@/components/UI/BaseHeader"
+</script>
 
 <style lang="scss">
     * {
@@ -37,6 +42,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        overflow: hidden;
     }
 
     @font-face {
