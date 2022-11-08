@@ -10,7 +10,19 @@ export default class MetaMaskConnection extends WalletConnection {
         return this.provider
     }
 
-    async getAccount(): Promise<void> {
-        await this.getProvider().send("eth_requestAccounts", [])
+    async getAccount(): Promise<string> {
+        return await this.getProvider().send("eth_requestAccounts", [])
+    }
+
+    getSigner(): any {
+        return this.getProvider().getSigner()
+    }
+
+    async getBalance(address: string): Promise<string> {
+        return await this.getProvider().getBalance(address)
+    }
+
+    async getNetwork(): Promise<any> {
+        return await this.getProvider().getNetwork()
     }
 }

@@ -3,5 +3,11 @@ export default abstract class WalletConnection {
 
     abstract getProvider(): any
 
-    abstract getAccount(): Promise<void>
+    abstract getAccount(): Promise<string>
+
+    abstract getSigner(): any
+
+    abstract getBalance(address: string): Promise<string>
+
+    abstract getNetwork(): Promise<any>
 }
