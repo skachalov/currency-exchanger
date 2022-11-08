@@ -1,26 +1,39 @@
 <template>
     <base-input
+        :title="'Address'"
         :input-value="inputAddress"
-        placeholder="Address..."
         @updateInputValue="updateInputAddress"
     />
     <base-input
+        :title="'Amount'"
         :input-value="inputAmount"
-        placeholder="Amount..."
         @updateInputValue="updateInputAmount"
     />
+    <div class="button-container">
+        <base-button
+            :title="'cancel'"
+            :icon-name="'arrow-rotate-left'"
+            @click="redirectWalletPage"
+        />
+        <base-button
+            :title="'send'"
+            :icon-name="'arrow-up'"
+        />
+    </div>
 </template>
 
 <script lang="ts" setup>
 import BaseInput from "@/components/UI/BaseInput"
 import { defineProps, defineEmits } from "vue"
+import BaseButton from "@/components/UI/BaseButton.vue";
 
 defineProps({
     inputAddress: String,
     inputAmount: String
 })
 
-const emits = defineEmits(["updateInputAddress", "updateInputAmount"])
+const emits = defineEmits(["updateInputAddress", "updateInputAmount",
+    "redirectWalletPage"])
 
 function updateInputAddress(value: string) {
     emits("updateInputAddress", value)
@@ -28,8 +41,17 @@ function updateInputAddress(value: string) {
 function updateInputAmount(value: string) {
     emits("updateInputAmount", value)
 }
+function redirectWalletPage() {
+    emits("redirectWalletPage")
+}
 </script>
 
 <style scoped>
-
+.button-container {
+    margin-top: 25px;
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 </style>
