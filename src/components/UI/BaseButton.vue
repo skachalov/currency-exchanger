@@ -3,7 +3,9 @@
         <button class="base-button">
             <fa :icon="iconName" />
         </button>
-        <div class="button-title">{{ title }}</div>
+        <div class="button-title">
+            {{ title }}
+        </div>
     </div>
 </template>
 
@@ -32,16 +34,14 @@ defineProps({
     border-radius: 50%;
     border: none;
     cursor: pointer;
+    transition: .2s;
 }
 .button-title {
     font-family: "Gilroy Regular";
 }
 
 .base-button:hover {
-    background-color: rgba($base3, 0.95);
-}
-
-.base-button:active {
-    background-color: rgba($base3, 0.9);
+    font-size: 24px;
+    transform: rotateZ(45deg);
 }
 </style>
