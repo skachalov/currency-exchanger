@@ -6,9 +6,9 @@ export default class WalletDataFacade {
     static async GetWalletData(walletType: WalletType): Promise<object> {
         const connection = ConnectionFactory.GetWalletConnection(walletType)
         const signer = connection.getSigner()
+        const network = await connection.getNetwork()
         const address = await signer.getAddress()
         const balance = await connection.getBalance(address)
-        const network = await connection.getNetwork()
 
         return {
             network: network.name,

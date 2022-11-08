@@ -1,5 +1,5 @@
 <template>
-    <div id="wallet-data-container">
+    <div>
         <wallet-data-item
             :title="'Network'"
             :data-item="network"

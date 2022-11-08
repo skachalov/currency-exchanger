@@ -20,7 +20,7 @@
                     style="margin-top: 20px"
                     :title="'send'"
                     :icon-name="'arrow-up'"
-                    @click="redirectToSendPage"
+                    @click="redirect"
                 />
             </template>
         </div>
@@ -28,13 +28,10 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue"
-import { useRouter } from "vue-router"
+import { defineProps, defineEmits } from "vue"
 import WalletData from "@/components/WalletPage/WalletData.vue"
 import BaseButton from "@/components/UI/BaseButton.vue"
-import BaseLoader from "@/components/UI/BaseLoader.vue";
-
-const router = useRouter()
+import BaseLoader from "@/components/UI/BaseLoader.vue"
 
 defineProps({
     isLoaded: {
@@ -46,8 +43,10 @@ defineProps({
     balance: String
 })
 
-function redirectToSendPage() {
-    router.push("/send")
+const emits = defineEmits(["redirect"])
+
+function redirect() {
+    emits("redirect")
 }
 </script>
 

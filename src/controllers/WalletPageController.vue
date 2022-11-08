@@ -4,6 +4,7 @@
         :network="network"
         :address="address"
         :balance="balance"
+        @redirect="redirectToSendPage"
     />
 </template>
 
@@ -33,6 +34,10 @@ onMounted(async () => {
         router.push("/auth")
     }
 })
+
+function redirectToSendPage() {
+    router.push("/send")
+}
 </script>
 
 <style scoped>
