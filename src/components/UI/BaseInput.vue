@@ -1,8 +1,8 @@
 <template>
     <input
         class="base-input"
-        :value="modelValue"
-        @input="updateModelValue"
+        :value="inputValue"
+        @input="updateInputValue"
     />
 </template>
 
@@ -10,13 +10,13 @@
 import { defineProps, defineEmits } from "vue"
 
 defineProps({
-    modelValue: String
+    inputValue: String
 })
 
-const emits = defineEmits(["update:modelValue"])
+const emits = defineEmits(["updateInputValue"])
 
-function updateModelValue(event: any) {
-    emits("update:modelValue", event.target.value)
+function updateInputValue(event: any) {
+    emits("updateInputValue", event.target.value)
 }
 </script>
 

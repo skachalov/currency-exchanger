@@ -1,20 +1,33 @@
 <template>
     <base-input
-        v-model="inputLineAddress"
+        :input-value="inputAddress"
         placeholder="Address..."
+        @updateInputValue="updateInputAddress"
     />
     <base-input
-        v-model="inputLineAmount"
+        :input-value="inputAmount"
         placeholder="Amount..."
+        @updateInputValue="updateInputAmount"
     />
 </template>
 
 <script lang="ts" setup>
 import BaseInput from "@/components/UI/BaseInput"
-import { ref } from "vue"
+import { defineProps, defineEmits } from "vue"
 
-let inputLineAddress = ref("")
-let inputLineAmount = ref("")
+defineProps({
+    inputAddress: String,
+    inputAmount: String
+})
+
+const emits = defineEmits(["updateInputAddress", "updateInputAmount"])
+
+function updateInputAddress(value: string) {
+    emits("updateInputAddress", value)
+}
+function updateInputAmount(value: string) {
+    emits("updateInputAmount", value)
+}
 </script>
 
 <style scoped>
