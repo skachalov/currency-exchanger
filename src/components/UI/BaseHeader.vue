@@ -7,6 +7,8 @@
 <style lang="scss" scoped>
 .base-header {
     width: 100%;
+    position: absolute;
+    //top: 0;
     font-family: "Gilroy ExtraBold";
     display: flex;
     justify-content: center;

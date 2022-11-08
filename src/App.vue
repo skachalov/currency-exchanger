@@ -2,7 +2,9 @@
     <div id="app-container">
         <div id="app-wrapper">
             <base-header />
-            <router-view />
+            <div id="app-wrapper-content">
+                <router-view />
+            </div>
         </div>
     </div>
 </template>
@@ -34,15 +36,21 @@ import BaseHeader from "@/components/UI/BaseHeader"
     }
 
     #app-wrapper {
+        position: relative;
         width: 800px;
         height: 500px;
         color: $base2;
         border-radius: 20px;
         background-color: $base1;
+        overflow: hidden;
+    }
+
+    #app-wrapper-content {
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow: hidden;
+        justify-content: center;
     }
 
     @font-face {
