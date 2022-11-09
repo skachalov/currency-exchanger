@@ -1,1 +1,1 @@
-export const ACCAPTABLE_NETWORKS = ["goerli"]
+export const ACCEPTABLE_NETWORKS = ["goerli"]

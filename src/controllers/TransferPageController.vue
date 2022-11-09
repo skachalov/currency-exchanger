@@ -19,7 +19,8 @@ import { WalletType } from "@/helpers/WalletConnection/WalletType"
 import ConnectionFactory from "@/helpers/WalletConnection/ConnectionFactory"
 import TransferValidator from "@/helpers/TransferValidator"
 import WalletTransferFacade from "@/helpers/WalletTransferFacade"
-import {ethers} from "ethers";
+import { ACCEPTABLE_NETWORKS } from "@/const/acceptableNetworks"
+import { ethers } from "ethers"
 
 const router = useRouter()
 
@@ -53,7 +54,12 @@ async function transferCurrency() {
     inputAddressError.value = !TransferValidator.ValidateAddress(inputAddress.value, address)
     inputAmountError.value = !TransferValidator.ValidateAmount(inputAmount.value, yourBalance)
 
-    if (inputAddressError.value || inputAmountError.value || acceptableNetworkError.value) return
+    if (acceptableNetworkError.value) {
+        alert(`This wallet works only with ${ ACCEPTABLE_NETWORKS.join(',') } networks`)
+        return
+    }
+
+    if (inputAddressError.value || inputAmountError.value) return
 
     const gasPrice = await connection.getGasPrice()
 
