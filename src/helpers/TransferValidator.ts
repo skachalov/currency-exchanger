@@ -1,4 +1,10 @@
+import { ACCAPTABLE_NETWORKS } from "@/const/acceptableNetworks"
+
 export default class TransferValidator {
+    static ValidateNetwork(network: string): boolean {
+        return ACCAPTABLE_NETWORKS.indexOf(network) !== -1
+    }
+
     static ValidateAddress(address: string, yourAddress: string): boolean {
         return address.length > 0 && address !== yourAddress
     }

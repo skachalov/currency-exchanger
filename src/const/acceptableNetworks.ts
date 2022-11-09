@@ -1,0 +1,1 @@
+export const ACCAPTABLE_NETWORKS = ["goerli"]

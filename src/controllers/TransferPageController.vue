@@ -23,6 +23,8 @@ import {ethers} from "ethers";
 
 const router = useRouter()
 
+let acceptableNetworkError = ref(false)
+
 let inputAddress = ref("")
 let inputAddressError = ref(false)
 
@@ -45,11 +47,13 @@ async function transferCurrency() {
     const signer = await provider.getSigner()
     const address = await signer.getAddress()
     const yourBalance = await connection.getBalance(address)
+    const network = await connection.getNetwork()
 
+    acceptableNetworkError.value = !TransferValidator.ValidateNetwork(network.name)
     inputAddressError.value = !TransferValidator.ValidateAddress(inputAddress.value, address)
     inputAmountError.value = !TransferValidator.ValidateAmount(inputAmount.value, yourBalance)
 
-    if (inputAddressError.value || inputAmountError.value) return
+    if (inputAddressError.value || inputAmountError.value || acceptableNetworkError.value) return
 
     const gasPrice = await connection.getGasPrice()
 
