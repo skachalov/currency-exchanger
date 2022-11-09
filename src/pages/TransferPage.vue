@@ -1,14 +1,22 @@
 <template>
-    <base-input
-        :title="'Address'"
-        :input-value="inputAddress"
-        @updateInputValue="updateInputAddress"
-    />
-    <base-input
-        :title="'Amount'"
-        :input-value="inputAmount"
-        @updateInputValue="updateInputAmount"
-    />
+    <div>
+        <base-input
+            :title="'Address'"
+            :input-value="inputAddress"
+            @updateInputValue="updateInputAddress"
+            :error="inputAddressError"
+            :error-text="'Incorrect address'"
+        />
+    </div>
+    <div>
+        <base-input
+            :title="'Amount'"
+            :input-value="inputAmount"
+            @updateInputValue="updateInputAmount"
+            :error="inputAmountError"
+            :error-text="'Incorrect amount'"
+        />
+    </div>
     <div class="button-container">
         <base-button
             :title="'cancel'"
@@ -30,7 +38,9 @@ import BaseButton from "@/components/UI/BaseButton.vue";
 
 defineProps({
     inputAddress: String,
-    inputAmount: String
+    inputAddressError: Boolean,
+    inputAmount: String,
+    inputAmountError: Boolean
 })
 
 const emits = defineEmits(["updateInputAddress", "updateInputAmount",
@@ -57,5 +67,8 @@ function transferCurrency() {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.base-warning {
+    position: absolute;
 }
 </style>

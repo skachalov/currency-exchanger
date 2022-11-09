@@ -9,15 +9,29 @@
             @input="updateInputValue"
             placeholder="Input..."
         />
+        <transition name="base-warning-transition">
+            <base-warning
+                style="margin-top: 5px"
+                v-show="error"
+            >
+                {{ errorText }}
+            </base-warning>
+        </transition>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { defineProps, defineEmits } from "vue"
+import BaseWarning from "@/components/UI/BaseWarning"
 
 defineProps({
     inputValue: String,
-    title: String
+    title: String,
+    error: {
+        type: Boolean,
+        default: false
+    },
+    errorText: String
 })
 
 const emits = defineEmits(["updateInputValue"])
@@ -33,6 +47,7 @@ function updateInputValue(event: any) {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 80px;
 }
 
 .base-input-title {
@@ -50,5 +65,18 @@ function updateInputValue(event: any) {
     outline: none;
     width: 400px;
     justify-self: start;
+}
+
+.base-warning-transition-item {
+    display: inline-block;
+}
+.base-warning-transition-enter-active,
+.base-warning-transition-leave-active {
+    transition: all .7s ease;
+}
+.base-warning-transition-enter-from,
+.base-warning-transition-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 </style>
