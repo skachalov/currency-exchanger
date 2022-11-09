@@ -25,4 +25,8 @@ export default class MetaMaskConnection extends WalletConnection {
     async getNetwork(): Promise<any> {
         return await this.getProvider().getNetwork()
     }
+
+    async getGasPrice(): Promise<any> {
+        return await this.getProvider().getGasPrice()
+    }
 }

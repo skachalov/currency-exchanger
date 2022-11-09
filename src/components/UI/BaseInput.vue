@@ -48,7 +48,7 @@ function updateInputValue(event: any) {
     color: $base2;
     border-radius: 10px;
     outline: none;
-    width: 300px;
+    width: 400px;
     justify-self: start;
 }
 </style>

@@ -18,6 +18,7 @@
         <base-button
             :title="'send'"
             :icon-name="'arrow-up'"
+            @click="transferCurrency"
         />
     </div>
 </template>
@@ -33,7 +34,7 @@ defineProps({
 })
 
 const emits = defineEmits(["updateInputAddress", "updateInputAmount",
-    "redirectWalletPage"])
+    "redirectWalletPage", "transferCurrency"])
 
 function updateInputAddress(value: string) {
     emits("updateInputAddress", value)
@@ -43,6 +44,9 @@ function updateInputAmount(value: string) {
 }
 function redirectWalletPage() {
     emits("redirectWalletPage")
+}
+function transferCurrency() {
+    emits("transferCurrency")
 }
 </script>
 

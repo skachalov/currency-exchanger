@@ -10,4 +10,6 @@ export default abstract class WalletConnection {
     abstract getBalance(address: string): Promise<string>
 
     abstract getNetwork(): Promise<any>
+
+    abstract getGasPrice(): Promise<any>
 }
