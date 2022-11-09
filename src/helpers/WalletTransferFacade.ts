@@ -1,7 +1,6 @@
 export default class WalletTransferFacade {
-    static TransferMoney(to: string, amount: string) {
-        console.log(
-            `You transfer ${amount} eth to ${to}`
-        )
+    static async TransferMoney(signer: any, transaction: any) {
+        const t = await signer.sendTransaction(transaction)
+        console.log(t)
     }
 }

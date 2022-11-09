@@ -49,16 +49,19 @@ async function transferCurrency() {
     inputAddressError.value = !TransferValidator.ValidateAddress(inputAddress.value, address)
     inputAmountError.value = !TransferValidator.ValidateAmount(inputAmount.value, yourBalance)
 
-    // const gasPrice = await connection.getGasPrice()
-    //
-    // const tx = {
-    //     from: address,
-    //     to: inputAddress.value,
-    //     value: ethers.utils.parseEther(inputAmount.value),
-    //     gasPrice: gasPrice
-    // }
+    if (inputAddressError.value || inputAmountError.value) return
 
-    //WalletTransferFacade.TransferMoney(inputAddress.value, inputAmount.value)
+    const gasPrice = await connection.getGasPrice()
+
+    const transaction = {
+        from: address,
+        to: inputAddress.value,
+        value: ethers.utils.parseEther(inputAmount.value),
+        gasLimit: ethers.utils.hexlify(100000),
+        gasPrice: gasPrice
+    }
+
+    await WalletTransferFacade.TransferMoney(signer, transaction)
 }
 </script>
 
