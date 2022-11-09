@@ -61,10 +61,10 @@ async function transferCurrency() {
         gasPrice: gasPrice
     }
 
-    await WalletTransferFacade.TransferMoney(signer, transaction)
+    const hash = await WalletTransferFacade.TransferMoney(signer, transaction)
+
+    if (hash !== -1) {
+        await router.push(`/status/${ hash }`)
+    }
 }
 </script>
-
-<style scoped>
-
-</style>

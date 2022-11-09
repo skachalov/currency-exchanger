@@ -1,6 +1,7 @@
 import AuthPageController from "@/controllers/AuthPageController.vue"
 import WalletPageController from "@/controllers/WalletPageController.vue"
 import TransferPageController from "@/controllers/TransferPageController.vue"
+import StatusPageController from "@/controllers/StatusPageController.vue"
 
 export const routesList = [
     {
@@ -14,5 +15,9 @@ export const routesList = [
     {
         path: "/transfer",
         component: TransferPageController
+    },
+    {
+        path: "/status/:hash",
+        component: StatusPageController
     }
 ]
