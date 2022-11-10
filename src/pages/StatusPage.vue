@@ -6,6 +6,7 @@
         :link="link"
         :hash="hash"
     />
+    {{ status }}
     <base-button
         style="margin-top: 25px"
         :title="'return'"
@@ -22,7 +23,8 @@ import BaseButton from "@/components/UI/BaseButton.vue"
 
 defineProps({
     link: String,
-    hash: String
+    hash: String,
+    status: String
 })
 
 const emits = defineEmits(["redirectWalletPage"])
