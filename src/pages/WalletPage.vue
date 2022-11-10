@@ -8,9 +8,7 @@
 
     <template v-else>
         <wallet-data
-            :network="network"
-            :address="address"
-            :balance="balance"
+            :data="data"
         />
         <base-button
             style="margin-top: 20px"
@@ -32,9 +30,7 @@ defineProps({
         type: Boolean,
         default: false
     },
-    network: String,
-    address: String,
-    balance: String
+    data: Object
 })
 
 const emits = defineEmits(["redirect"])
