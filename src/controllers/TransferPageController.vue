@@ -1,9 +1,6 @@
 <template>
     <transfer-page
-        :input-address="inputAddress"
-        :input-address-error="inputAddressError"
-        :input-amount="inputAmount"
-        :input-amount-error="inputAmountError"
+        :inputs-data="inputsData"
         @updateInputAddress="updateInputAddress"
         @updateInputAmount="updateInputAmount"
         @redirectWalletPage="redirectWalletPage"
@@ -24,19 +21,26 @@ import { ethers } from "ethers"
 
 const router = useRouter()
 
+let inputsData = ref({
+    inputAddress: {
+        title: "Address",
+        input: "",
+        error: false,
+    },
+    inputAmount: {
+        title: "Amount",
+        input: "",
+        error: false
+    }
+})
+
 let acceptableNetworkError = ref(false)
 
-let inputAddress = ref("")
-let inputAddressError = ref(false)
-
-let inputAmount = ref("")
-let inputAmountError = ref(false)
-
 function updateInputAddress(value: string) {
-    inputAddress.value = value
+    inputsData.value.inputAddress.input = value
 }
 function updateInputAmount(value: string) {
-    inputAmount.value = value
+    inputsData.value.inputAmount.input = value
 }
 function redirectWalletPage() {
     router.push("/wallet")
@@ -57,18 +61,19 @@ async function transferCurrency() {
         return
     }
 
-    inputAddressError.value = !TransferValidator.ValidateAddress(inputAddress.value, address)
-    inputAmountError.value =
-        !TransferValidator.ValidateAmount(inputAmount.value, ethers.utils.formatEther(yourBalance))
+    inputsData.value.inputAddress.error =
+        !TransferValidator.ValidateAddress(inputsData.value.inputAddress.input, address)
+    inputsData.value.inputAmount.error =
+        !TransferValidator.ValidateAmount(inputsData.value.inputAmount.input, ethers.utils.formatEther(yourBalance))
 
-    if (inputAddressError.value || inputAmountError.value) return
+    if (inputsData.value.inputAddress.error || inputsData.value.inputAmount.error) return
 
     const gasPrice = await connection.getGasPrice()
 
     const transaction = {
         from: address,
-        to: inputAddress.value,
-        value: ethers.utils.parseEther(inputAmount.value),
+        to: inputsData.value.inputAddress.input,
+        value: ethers.utils.parseEther(inputsData.value.inputAmount.input),
         gasLimit: ethers.utils.hexlify(100000),
         gasPrice: gasPrice
     }

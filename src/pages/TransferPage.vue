@@ -1,22 +1,14 @@
 <template>
-    <div>
-        <base-input
-            :title="'Address'"
-            :input-value="inputAddress"
-            @updateInputValue="updateInputAddress"
-            :error="inputAddressError"
-            :error-text="'Incorrect address'"
-        />
-    </div>
-    <div>
-        <base-input
-            :title="'Amount'"
-            :input-value="inputAmount"
-            @updateInputValue="updateInputAmount"
-            :error="inputAmountError"
-            :error-text="'Incorrect amount'"
-        />
-    </div>
+    <base-input
+        v-for="input in Object.keys(inputsData)"
+        :key="inputsData[input].title"
+        :title="inputsData[input].title"
+        :input-value="inputsData[input].input"
+        @updateInputValue="updateInputValue"
+        :error="inputsData[input].error"
+        :error-text="`Incorrect ${inputsData[input].title.toLowerCase()}`"
+    />
+
     <div class="button-container">
         <base-button
             :title="'cancel'"
@@ -37,20 +29,21 @@ import { defineProps, defineEmits } from "vue"
 import BaseButton from "@/components/UI/BaseButton.vue";
 
 defineProps({
-    inputAddress: String,
-    inputAddressError: Boolean,
-    inputAmount: String,
-    inputAmountError: Boolean
+    inputsData: Object
 })
 
 const emits = defineEmits(["updateInputAddress", "updateInputAmount",
     "redirectWalletPage", "transferCurrency"])
 
-function updateInputAddress(value: string) {
-    emits("updateInputAddress", value)
-}
-function updateInputAmount(value: string) {
-    emits("updateInputAmount", value)
+function updateInputValue(value: string, title: string) {
+    switch (title) {
+        case "Address":
+            emits("updateInputAddress", value)
+            break
+        case "Amount":
+            emits("updateInputAmount", value)
+            break
+    }
 }
 function redirectWalletPage() {
     emits("redirectWalletPage")

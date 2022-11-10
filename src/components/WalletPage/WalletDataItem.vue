@@ -1,8 +1,6 @@
 <template>
     <div class="wallet-data-item-wrapper">
-        <div class="item-title">
-            {{ title }}
-        </div>
+        <base-title-row :title="title" />
         <div
             v-if="!toCopy"
             class="item-value"
@@ -37,6 +35,7 @@
 import { ref, defineProps } from "vue"
 import copyText from "@/helpers/copyText"
 import BaseHelper from "@/components/UI/BaseHelper.vue"
+import BaseTitleRow from "@/components/UI/BaseTitleRow.vue";
 
 const props = defineProps({
     title: String,
@@ -70,10 +69,6 @@ function mouseLeaveAction() {
     display: flex;
     align-items: center;
     flex-direction: column;
-}
-.item-title {
-    font-family: "Gilroy ExtraBold";
-    font-size: 24px
 }
 .item-value {
     font-family: "Gilroy Regular";
