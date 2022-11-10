@@ -51,12 +51,12 @@ const getIconName = computed(() => {
     font-family: "Gilroy ExtraBold";
 }
 .loading {
-    background-color: white;
+    background-color: $waiting;
 }
 .success {
     background-color: $success;
 }
 .fail {
-    background-color: $waiting;
+    background-color: $warn;
 }
 </style>
