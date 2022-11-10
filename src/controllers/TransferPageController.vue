@@ -1,9 +1,6 @@
 <template>
     <transfer-page
-        :input-address="inputAddress"
-        :input-address-error="inputAddressError"
-        :input-amount="inputAmount"
-        :input-amount-error="inputAmountError"
+        :inputs-data="inputsData"
         @updateInputAddress="updateInputAddress"
         @updateInputAmount="updateInputAmount"
         @redirectWalletPage="redirectWalletPage"
@@ -19,21 +16,31 @@ import { WalletType } from "@/helpers/WalletConnection/WalletType"
 import ConnectionFactory from "@/helpers/WalletConnection/ConnectionFactory"
 import TransferValidator from "@/helpers/TransferValidator"
 import WalletTransferFacade from "@/helpers/WalletTransferFacade"
-import {ethers} from "ethers";
+import { ACCEPTABLE_NETWORKS } from "@/const/acceptableNetworks"
+import { ethers } from "ethers"
 
 const router = useRouter()
 
-let inputAddress = ref("")
-let inputAddressError = ref(false)
+let inputsData = ref({
+    inputAddress: {
+        title: "Address",
+        input: "",
+        error: false,
+    },
+    inputAmount: {
+        title: "Amount",
+        input: "",
+        error: false
+    }
+})
 
-let inputAmount = ref("")
-let inputAmountError = ref(false)
+let acceptableNetworkError = ref(false)
 
 function updateInputAddress(value: string) {
-    inputAddress.value = value
+    inputsData.value.inputAddress.input = value
 }
 function updateInputAmount(value: string) {
-    inputAmount.value = value
+    inputsData.value.inputAmount.input = value
 }
 function redirectWalletPage() {
     router.push("/wallet")
@@ -45,18 +52,28 @@ async function transferCurrency() {
     const signer = await provider.getSigner()
     const address = await signer.getAddress()
     const yourBalance = await connection.getBalance(address)
+    const network = await connection.getNetwork()
 
-    inputAddressError.value = !TransferValidator.ValidateAddress(inputAddress.value, address)
-    inputAmountError.value = !TransferValidator.ValidateAmount(inputAmount.value, yourBalance)
+    acceptableNetworkError.value = !TransferValidator.ValidateNetwork(network.name)
 
-    if (inputAddressError.value || inputAmountError.value) return
+    if (acceptableNetworkError.value) {
+        alert(`This wallet works only with ${ ACCEPTABLE_NETWORKS.join(',') } networks`)
+        return
+    }
+
+    inputsData.value.inputAddress.error =
+        !TransferValidator.ValidateAddress(inputsData.value.inputAddress.input, address)
+    inputsData.value.inputAmount.error =
+        !TransferValidator.ValidateAmount(inputsData.value.inputAmount.input, ethers.utils.formatEther(yourBalance))
+
+    if (inputsData.value.inputAddress.error || inputsData.value.inputAmount.error) return
 
     const gasPrice = await connection.getGasPrice()
 
     const transaction = {
         from: address,
-        to: inputAddress.value,
-        value: ethers.utils.parseEther(inputAmount.value),
+        to: inputsData.value.inputAddress.input,
+        value: ethers.utils.parseEther(inputsData.value.inputAmount.input),
         gasLimit: ethers.utils.hexlify(100000),
         gasPrice: gasPrice
     }

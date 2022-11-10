@@ -1,0 +1,1 @@
+export const ACCEPTABLE_NETWORKS = ["goerli"]

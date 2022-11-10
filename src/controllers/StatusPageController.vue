@@ -1,5 +1,8 @@
 <template>
-    <status-page />
+    <status-page
+        :link="link"
+        :hash="route.params.hash"
+    />
 </template>
 
 <script setup>
@@ -15,7 +18,6 @@ let link = ref(GOERLI_ETHERSCAN)
 
 onMounted(() => {
     link.value += route.params.hash
-    console.log(link.value)
 })
 </script>
 

@@ -1,17 +1,11 @@
 <template>
     <div>
         <wallet-data-item
-            :title="'Network'"
-            :data-item="network"
-        />
-        <wallet-data-item
-            :title="'Address'"
-            :data-item="address"
-            :to-copy="true"
-        />
-        <wallet-data-item
-            :title="'Balance'"
-            :data-item="balance"
+            v-for="d in Object.keys(data)"
+            :key="d"
+            :title="d.toUpperCase()"
+            :data-item="data[d]"
+            :to-copy="d === 'address'"
         />
     </div>
 </template>
@@ -21,8 +15,6 @@ import { defineProps } from "vue"
 import WalletDataItem from "@/components/WalletPage/WalletDataItem.vue"
 
 defineProps({
-    network: String,
-    address: String,
-    balance: String
+    data: Object
 })
 </script>

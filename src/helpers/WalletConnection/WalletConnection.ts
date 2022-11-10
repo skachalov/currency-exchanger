@@ -1,3 +1,5 @@
+import {providers} from "ethers"
+
 export default abstract class WalletConnection {
     provider: any
 
@@ -5,11 +7,11 @@ export default abstract class WalletConnection {
 
     abstract getAccount(): Promise<string>
 
-    abstract getSigner(): any
+    abstract getSigner(): providers.JsonRpcSigner
 
     abstract getBalance(address: string): Promise<string>
 
-    abstract getNetwork(): Promise<any>
+    abstract getNetwork(): Promise<providers.Network>
 
     abstract getGasPrice(): Promise<any>
 }

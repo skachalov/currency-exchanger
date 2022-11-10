@@ -1,8 +1,6 @@
 <template>
     <div class="base-input-container">
-        <div class="base-input-title">
-            {{ title }}
-        </div>
+        <base-title-row :title="title" />
         <input
             class="base-input"
             :value="inputValue"
@@ -23,8 +21,9 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from "vue"
 import BaseWarning from "@/components/UI/BaseWarning"
+import BaseTitleRow from "@/components/UI/BaseTitleRow.vue";
 
-defineProps({
+const props = defineProps({
     inputValue: String,
     title: String,
     error: {
@@ -37,7 +36,7 @@ defineProps({
 const emits = defineEmits(["updateInputValue"])
 
 function updateInputValue(event: any) {
-    emits("updateInputValue", event.target.value)
+    emits("updateInputValue", event.target.value, props.title)
 }
 </script>
 
@@ -50,13 +49,7 @@ function updateInputValue(event: any) {
     height: 80px;
 }
 
-.base-input-title {
-    font-family: "Gilroy ExtraBold";
-    font-size: 24px;
-}
-
 .base-input {
-    margin-top: 5px;
     padding: 10px 15px;
     background-color: $base0;
     border: none;

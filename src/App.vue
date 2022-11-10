@@ -3,7 +3,7 @@
         <div id="app-wrapper">
             <base-header />
             <div id="app-wrapper-content">
-                <router-view />
+                <AppLayout />
             </div>
         </div>
     </div>
@@ -11,6 +11,7 @@
 
 <script setup>
 import BaseHeader from "@/components/UI/BaseHeader"
+import AppLayout from "@/components/AppLayout"
 </script>
 
 <style lang="scss">
