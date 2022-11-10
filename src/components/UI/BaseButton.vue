@@ -1,16 +1,13 @@
 <template>
     <div class="base-button-container">
         <template v-if="className === 'big'">
-            <button
-                class="base-button big"
-            >
+            <button class="base-button big">
                 <h2>{{ title }}</h2>
             </button>
         </template>
+
         <template v-else>
-            <button
-                class="base-button small"
-            >
+            <button class="base-button small">
                 <fa :icon="iconName" />
             </button>
             <div class="button-title">
@@ -39,7 +36,6 @@ defineProps({
     flex-direction: column;
     align-items: center;
 }
-
 .base-button {
     background-color: $base3;
     color: $base1;
@@ -47,30 +43,25 @@ defineProps({
     cursor: pointer;
     transition: .2s;
 }
-
 .small {
     font-size: 18px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
-
 .big {
     width: 400px;
     height: 150px;
     border-radius: 20px;
     font-size: 36px;
 }
-
 .button-title {
     font-family: "Gilroy Regular";
 }
-
 .small:hover {
     font-size: 24px;
     transform: rotateZ(45deg);
 }
-
 .big:hover {
     font-size: 42px;
 }

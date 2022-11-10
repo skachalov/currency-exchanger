@@ -1,9 +1,7 @@
 <template>
     <wallet-page
         :is-loaded="isLoaded"
-        :network="network"
-        :address="address"
-        :balance="balance"
+        :data="data"
         @redirect="redirectToSendPage"
     />
 </template>
@@ -17,17 +15,20 @@ import WalletDataFacade from "@/helpers/WalletDataFacade"
 
 const router = useRouter()
 
-let network = ref<string>("")
-let address = ref<string>("")
-let balance = ref<string>("0.0")
+let data = ref({
+    network: "",
+    address: "",
+    balance: "0.0"
+})
+
 let isLoaded = ref<boolean>(false)
 
 onMounted(async () => {
     try {
         const walletData = await WalletDataFacade.GetWalletData(WalletType.MetaMask)
-        network.value = walletData.network
-        address.value = walletData.address
-        balance.value = walletData.balance
+        data.value.network = walletData.network
+        data.value.address = walletData.address
+        data.value.balance = walletData.balance
         isLoaded.value = true
     }
     catch {
