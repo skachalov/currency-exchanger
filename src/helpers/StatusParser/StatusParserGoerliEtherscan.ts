@@ -1,5 +1,6 @@
 import StatusParser from "@/helpers/StatusParser/StatusParser"
 import axios from "axios"
+import txStatus from "@/const/txStatus"
 
 export default class StatusParserGoerliEtherscan extends StatusParser {
     async GetStatus(page: string): Promise<string> {
@@ -19,5 +20,19 @@ export default class StatusParserGoerliEtherscan extends StatusParser {
 
     GetPossibleResultStatuses(): Array<string> {
         return ["Success", "Fail"]
+    }
+
+    ConvertStatus(status: string): string {
+        switch (status) {
+            case ("Success"): {
+                return txStatus.Success
+            }
+            case ("Fail"): {
+                return txStatus.Fail
+            }
+            default: {
+                return status
+            }
+        }
     }
 }

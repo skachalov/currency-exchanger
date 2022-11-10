@@ -14,22 +14,23 @@ import { useRoute, useRouter } from "vue-router"
 import { GOERLI_ETHERSCAN } from "@/const/URL"
 import StatusParserFactory from "@/helpers/StatusParser/StatusParserFactory"
 import { ParserType } from "@/helpers/StatusParser/ParserType"
+import txStatus from "@/const/txStatus"
 
 const route = useRoute()
 const router = useRouter()
 
 let link = ref(GOERLI_ETHERSCAN)
-let transactionStatus = ref("Loading")
+let transactionStatus = ref(txStatus.Loading)
 
 onMounted(async () => {
     link.value += route.params.hash
     const statusParser = StatusParserFactory.GetStatusParser(ParserType.GoerliEtherscan)
 
-    transactionStatus.value = await statusParser.GetStatus(link.value)
+    transactionStatus.value = statusParser.ConvertStatus(await statusParser.GetStatus(link.value))
 
     const interval = setInterval(async () => {
         if (statusParser.GetPossibleResultStatuses().indexOf(transactionStatus.value) === -1) {
-            transactionStatus.value = await statusParser.GetStatus(link.value)
+            transactionStatus.value = statusParser.ConvertStatus(await statusParser.GetStatus(link.value))
         }
         else {
             clearInterval(interval)

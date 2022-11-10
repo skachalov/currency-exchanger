@@ -1,9 +1,9 @@
 <template>
     <div
         class="base-status"
-        :class="{ 'success': className === 'success',
-                  'fail': className === 'fail',
-                  'waiting': className === 'waiting' }"
+        :class="{ 'success': className === txStatus.Success,
+                  'fail': className === txStatus.Fail,
+                  'loading': className === txStatus.Loading }"
     >
         <fa :icon="getIconName" />
         {{status}}
@@ -11,26 +11,27 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, ref, computed } from "vue"
+import { defineProps, computed } from "vue"
+import txStatus from "@/const/txStatus"
 
 const props = defineProps({
     status: {
         type: String,
-        default: "Loading"
+        default: txStatus.Loading
     }
 })
 
 const className = computed(() => {
-    if (["Success", "Fail"].indexOf(props.status) === -1) {
-        return "waiting"
+    if ([txStatus.Success, txStatus.Fail].indexOf(props.status) === -1) {
+        return txStatus.Loading
     }
-    return props.status.toLowerCase()
+    return props.status
 })
 const getIconName = computed(() => {
     switch (className.value) {
-        case ("success"):
+        case (txStatus.Success):
             return "check"
-        case ("fail"):
+        case (txStatus.Fail):
             return "xmark"
         default:
             return "circle"
@@ -49,7 +50,7 @@ const getIconName = computed(() => {
     color: $base1;
     font-family: "Gilroy ExtraBold";
 }
-.waiting {
+.loading {
     background-color: white;
 }
 .success {
