@@ -2,6 +2,7 @@
     <status-page
         :link="link"
         :hash="route.params.hash"
+        @redirectWalletPage="redirectWalletPage"
     />
 </template>
 
@@ -19,6 +20,10 @@ let link = ref(GOERLI_ETHERSCAN)
 onMounted(() => {
     link.value += route.params.hash
 })
+
+function redirectWalletPage() {
+    router.push("/wallet")
+}
 </script>
 
 <style scoped>
