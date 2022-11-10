@@ -6,7 +6,10 @@
         :link="link"
         :hash="hash"
     />
-    {{ status }}
+    <base-status
+        style="margin-top: 15px"
+        :status="status"
+    />
     <base-button
         style="margin-top: 25px"
         :title="'return'"
@@ -20,6 +23,7 @@ import BaseTitleRow from "@/components/UI/BaseTitleRow"
 import { defineProps, defineEmits } from "vue"
 import BaseLink from "@/components/UI/BaseLink.vue"
 import BaseButton from "@/components/UI/BaseButton.vue"
+import BaseStatus from "@/components/UI/BaseStatus.vue";
 
 defineProps({
     link: String,
