@@ -51,13 +51,15 @@ async function transferCurrency() {
     const network = await connection.getNetwork()
 
     acceptableNetworkError.value = !TransferValidator.ValidateNetwork(network.name)
-    inputAddressError.value = !TransferValidator.ValidateAddress(inputAddress.value, address)
-    inputAmountError.value = !TransferValidator.ValidateAmount(inputAmount.value, ethers.utils.formatEther(yourBalance))
 
     if (acceptableNetworkError.value) {
         alert(`This wallet works only with ${ ACCEPTABLE_NETWORKS.join(',') } networks`)
         return
     }
+
+    inputAddressError.value = !TransferValidator.ValidateAddress(inputAddress.value, address)
+    inputAmountError.value =
+        !TransferValidator.ValidateAmount(inputAmount.value, ethers.utils.formatEther(yourBalance))
 
     if (inputAddressError.value || inputAmountError.value) return
 
