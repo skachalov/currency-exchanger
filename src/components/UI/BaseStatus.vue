@@ -58,9 +58,16 @@ body.light-theme .base-status {
 .loading {
     background-color: $waiting;
 }
+body.light-theme .loading {
+    background-color: $waitingLight;
+}
 .success {
     background-color: $success;
 }
+body.light-theme .success {
+    background-color: $successLight;
+}
+
 .fail {
     background-color: $warn;
 }
