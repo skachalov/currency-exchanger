@@ -1,6 +1,6 @@
 import StatusParser from "@/helpers/StatusParser/StatusParser"
-import axios from "axios"
 import txStatus from "@/const/txStatus"
+import { fetchGetGoerliEtherscan } from "@/services/API/getGoerliEtherscan"
 
 export default class StatusParserGoerliEtherscan extends StatusParser {
     constructor() {
@@ -11,7 +11,7 @@ export default class StatusParserGoerliEtherscan extends StatusParser {
 
     async GetStatus(page: string): Promise<string> {
         try {
-            const pageData = await axios.get(page)
+            const pageData = await fetchGetGoerliEtherscan(page)
 
             const dom = this.ParseToDOM(pageData.data)
 
