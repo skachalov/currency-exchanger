@@ -40,11 +40,18 @@ onMounted(() => {
     height: 60px;
     animation: loader 2s linear infinite;
 }
+body.light-theme .loader {
+    border: 8px solid $base1Light;
+    border-top: 8px solid $base3;
+}
 
 .loader-warning {
     margin-top: 15px;
     color: $base2;
     font-family: "Gilroy Regular";
+}
+body.light-theme .loader-warning {
+    color: $base2Light;
 }
 
 @keyframes loader {

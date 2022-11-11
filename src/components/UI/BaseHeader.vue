@@ -19,9 +19,16 @@
     padding: 15px 0;
     background-color: $base0;
 }
+body.light-theme .base-header {
+    background-color: $base0Light;
+    color: $base2Light;
+}
 .title {
     color: $base2;
     font-size: 24px;
     text-decoration: none;
+}
+body.light-theme .title {
+    color: $base2Light;
 }
 </style>

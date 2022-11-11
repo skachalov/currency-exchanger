@@ -52,6 +52,9 @@ const getIconName = computed(() => {
     color: $base1;
     font-family: "Gilroy ExtraBold";
 }
+body.light-theme .base-status {
+    color: $base1Light;
+}
 .loading {
     background-color: $waiting;
 }

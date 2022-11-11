@@ -59,6 +59,10 @@ function updateInputValue(event: any) {
     width: 400px;
     justify-self: start;
 }
+body.light-theme .base-input {
+    background-color: $base0Light;
+    color: $base2Light;
+}
 
 .base-warning-transition-item {
     display: inline-block;

@@ -43,6 +43,10 @@ defineProps({
     cursor: pointer;
     transition: .2s;
 }
+body.light-theme .base-button {
+    color: $base1Light;
+}
+
 .small {
     font-size: 18px;
     width: 50px;
