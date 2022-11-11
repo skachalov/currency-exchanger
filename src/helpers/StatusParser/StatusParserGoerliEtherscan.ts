@@ -3,31 +3,42 @@ import axios from "axios"
 import txStatus from "@/const/txStatus"
 
 export default class StatusParserGoerliEtherscan extends StatusParser {
+    constructor() {
+        super();
+        this.statusSuccess = "Success"
+        this.statusFail = "Fail"
+    }
+
     async GetStatus(page: string): Promise<string> {
-        const pageData = await axios.get(page)
+        try {
+            const pageData = await axios.get(page)
 
-        const dom = this.ParseToDOM(pageData.data)
+            const dom = this.ParseToDOM(pageData.data)
 
-        const statusElement =
-            dom.querySelector("#ContentPlaceHolder1_maintable")
+            const statusElement =
+                dom.querySelector("#ContentPlaceHolder1_maintable")
 
-        let status = statusElement?.childNodes[7].childNodes[1].textContent
+            let status = statusElement?.childNodes[7].childNodes[1].textContent
 
-        status = status?.split(" ").filter(s => s !== "")[0]
+            status = status?.split(" ").filter(s => s !== "")[0]
 
-        return status || ""
+            return status || ""
+        }
+        catch {
+            return txStatus.Error
+        }
     }
 
     GetPossibleResultStatuses(): Array<string> {
-        return ["Success", "Fail"]
+        return [this.statusSuccess, this.statusFail]
     }
 
     ConvertStatus(status: string): string {
         switch (status) {
-            case ("Success"): {
+            case (this.statusSuccess): {
                 return txStatus.Success
             }
-            case ("Fail"): {
+            case (this.statusFail): {
                 return txStatus.Fail
             }
             default: {

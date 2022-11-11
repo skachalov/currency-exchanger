@@ -2,7 +2,7 @@
     <div
         class="base-status"
         :class="{ 'success': className === txStatus.Success,
-                  'fail': className === txStatus.Fail,
+                  'fail': className === txStatus.Fail || className === txStatus.Error,
                   'loading': className === txStatus.Loading }"
     >
         <fa :icon="getIconName" />
@@ -22,7 +22,7 @@ const props = defineProps({
 })
 
 const className = computed(() => {
-    if ([txStatus.Success, txStatus.Fail].indexOf(props.status) === -1) {
+    if ([txStatus.Success, txStatus.Fail, txStatus.Error].indexOf(props.status) === -1) {
         return txStatus.Loading
     }
     return props.status
@@ -32,6 +32,8 @@ const getIconName = computed(() => {
         case (txStatus.Success):
             return "check"
         case (txStatus.Fail):
+            return "xmark"
+        case (txStatus.Error):
             return "xmark"
         default:
             return "circle"

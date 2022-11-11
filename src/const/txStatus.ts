@@ -1,5 +1,6 @@
 export default {
     Loading: "Loading",
     Success: "Success",
-    Fail: "Fail"
+    Fail: "Fail",
+    Error: "Error"
 }

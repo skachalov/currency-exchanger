@@ -1,4 +1,7 @@
 export default abstract class StatusParser {
+    statusSuccess = ""
+    statusFail = ""
+
     ParseToDOM(pageData: string): HTMLDocument {
         return new DOMParser().parseFromString(pageData, "text/html")
     }
