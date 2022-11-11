@@ -1,6 +1,6 @@
 <template>
     <div class="base-title-row">
-        {{ title }}
+        {{ title.toUpperCase() }}
     </div>
 </template>
 

@@ -27,12 +27,12 @@ onMounted(async () => {
 
     const statusParser = StatusParserFactory.GetStatusParser(ParserType.GoerliEtherscan)
 
-    transactionStatus.value = statusParser.ConvertStatus(await statusParser.GetStatus(link.value))
+    transactionStatus.value = await getStatus(statusParser)
 
     const interval = setInterval(async () => {
         if (statusParser.GetPossibleResultStatuses().indexOf(transactionStatus.value) === -1
             && transactionStatus.value !== txStatus.Error) {
-            transactionStatus.value = statusParser.ConvertStatus(await statusParser.GetStatus(link.value))
+            transactionStatus.value = await getStatus(statusParser)
         }
         else {
             clearInterval(interval)
@@ -40,11 +40,11 @@ onMounted(async () => {
     }, 2000)
 })
 
+async function getStatus(statusParser) {
+    return statusParser.ConvertStatus(await statusParser.GetStatus(link.value))
+}
+
 function redirectWalletPage() {
     router.push("/wallet")
 }
 </script>
-
-<style scoped>
-
-</style>
