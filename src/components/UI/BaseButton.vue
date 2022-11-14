@@ -1,32 +1,37 @@
 <template>
     <div class="base-button-container">
-        <template v-if="className === 'big'">
-            <button class="base-button big">
-                <h2>{{ title }}</h2>
-            </button>
-        </template>
-
-        <template v-else>
-            <button class="base-button small">
-                <fa :icon="iconName" />
-            </button>
-            <div class="button-title">
-                {{ title }}
-            </div>
-        </template>
+        <button :class="classes" >
+            <component
+                v-if="className === 'big'"
+                :is="BaseButtonTitleBig"
+                :title="title"
+            />
+            <fa v-else :icon="iconName" />
+        </button>
+        <component
+            v-if="className === 'small'"
+            :is="BaseButtonTitleSmall"
+            :title="title"
+        />
     </div>
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from "vue"
+import { defineProps, computed } from "vue"
+import BaseButtonTitleSmall from "@/components/UI/BaseButtonTitleSmall.vue"
+import BaseButtonTitleBig from "@/components/UI/BaseButtonTitleBig.vue"
 
-defineProps({
+const props = defineProps({
     title: String,
     iconName: String,
     className: {
         type: String,
         default: "small"
     }
+})
+
+const classes = computed(() => {
+    return ["base-button", props.className]
 })
 </script>
 
@@ -54,9 +59,6 @@ defineProps({
     height: 150px;
     border-radius: 20px;
     font-size: 36px;
-}
-.button-title {
-    font-family: "Gilroy Regular";
 }
 .small:hover {
     font-size: 24px;
