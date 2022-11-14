@@ -9,7 +9,7 @@
     />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import StatusPage from "@/pages/StatusPage"
 import { ref, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"

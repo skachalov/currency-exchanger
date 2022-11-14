@@ -51,8 +51,7 @@ function redirectWalletPage() {
 let notification = ref("")
 
 async function transferCurrency() {
-
-    const connection = ConnectionFactory.GetWalletConnection(WalletType.MetaMask)
+    const connection = ConnectionFactory.GetWalletConnection(WalletType.META_MASK)
     const provider = connection.getProvider()
     const signer = await provider.getSigner()
     const address = await signer.getAddress()

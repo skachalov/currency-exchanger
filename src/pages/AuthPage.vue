@@ -19,7 +19,7 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import BaseButton from "@/components/UI/BaseButton"
 import { defineProps, defineEmits } from "vue"
 import BaseWarning from "@/components/UI/BaseWarning"

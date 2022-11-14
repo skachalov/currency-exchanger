@@ -7,7 +7,7 @@
     />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import AuthPage from "@/pages/AuthPage"
 import { WalletType } from "@/helpers/WalletConnection/WalletType"
 import WalletConnectionFacade from "@/helpers/WalletConnectionFacade"
