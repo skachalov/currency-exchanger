@@ -1,10 +1,12 @@
 <template>
     <transfer-page
         :inputs-data="inputsData"
+        :notification="notification"
         @updateInputAddress="updateInputAddress"
         @updateInputAmount="updateInputAmount"
         @redirectWalletPage="redirectWalletPage"
         @transferCurrency="transferCurrency"
+        @clearNotification="clearNotification"
     />
 </template>
 
@@ -45,6 +47,9 @@ function updateInputAmount(value: string) {
 function redirectWalletPage() {
     router.push("/wallet")
 }
+
+let notification = ref("")
+
 async function transferCurrency() {
 
     const connection = ConnectionFactory.GetWalletConnection(WalletType.MetaMask)
@@ -57,7 +62,7 @@ async function transferCurrency() {
     acceptableNetworkError.value = !TransferValidator.ValidateNetwork(network.name)
 
     if (acceptableNetworkError.value) {
-        alert(`This wallet works only with ${ ACCEPTABLE_NETWORKS.join(',') } networks`)
+        notification.value = `This wallet works only with ${ ACCEPTABLE_NETWORKS.join(',') } networks`
         return
     }
 
@@ -78,10 +83,17 @@ async function transferCurrency() {
         gasPrice: gasPrice
     }
 
-    const hash = await WalletTransferFacade.TransferMoney(signer, transaction)
+    const transferring = await WalletTransferFacade.TransferMoney(signer, transaction)
 
-    if (hash !== -1) {
-        await router.push(`/status/${ hash }`)
+    if (transferring.status !== -1) {
+        await router.push(`/status/${ transferring.description }`)
     }
+    else {
+        notification.value = transferring.description
+    }
+}
+
+function clearNotification() {
+    notification.value = ""
 }
 </script>

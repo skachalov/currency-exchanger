@@ -1,4 +1,8 @@
 <template>
+    <base-notification
+        :notification="notification"
+        @clearNotification="clearNotification"
+    />
     <base-title-row
         :title="'Your transaction'"
     />
@@ -24,16 +28,21 @@ import { defineProps, defineEmits } from "vue"
 import BaseLink from "@/components/UI/BaseLink.vue"
 import BaseButton from "@/components/UI/BaseButton.vue"
 import BaseStatus from "@/components/UI/BaseStatus.vue";
+import BaseNotification from "@/components/UI/BaseNotification.vue"
 
 defineProps({
     link: String,
     hash: String,
-    status: String
+    status: String,
+    notification: String
 })
 
-const emits = defineEmits(["redirectWalletPage"])
+const emits = defineEmits(["redirectWalletPage", "clearNotification"])
 function redirectWalletPage() {
     emits("redirectWalletPage")
+}
+function clearNotification() {
+    emits("clearNotification")
 }
 </script>
 

@@ -1,14 +1,13 @@
-import printError from "@/helpers/printError"
+import notificationConstructor from "@/helpers/notificationConstructor";
 
 export default class WalletTransferFacade {
     static async TransferMoney(signer: any, transaction: any) {
         try {
             const t = await signer.sendTransaction(transaction)
-            return t.hash
+            return notificationConstructor(1, t.hash)
         }
         catch {
-            printError("Operation canceled")
-            return -1
+            return notificationConstructor(-1,  "Operation canceled")
         }
     }
 }

@@ -1,12 +1,7 @@
 <template>
-    <div
-        class="base-status"
-        :class="{ 'success': className === txStatus.Success,
-                  'fail': className === txStatus.Fail || className === txStatus.Error,
-                  'loading': className === txStatus.Loading }"
-    >
+    <div :class="classes" >
         <fa :icon="getIconName" />
-        {{status}}
+        {{ status }}
     </div>
 </template>
 
@@ -17,23 +12,25 @@ import txStatus from "@/const/txStatus"
 const props = defineProps({
     status: {
         type: String,
-        default: txStatus.Loading
+        default: txStatus.LOADING
     }
 })
 
-const className = computed(() => {
-    if ([txStatus.Success, txStatus.Fail, txStatus.Error].indexOf(props.status) === -1) {
-        return txStatus.Loading
+const classes = computed(() => {
+    const classes = ["base-status"]
+
+    if ([txStatus.SUCCESS, txStatus.FAIL, txStatus.ERROR].indexOf(props.status) === -1) {
+        return [...classes, txStatus.LOADING.toLowerCase()]
     }
-    return props.status
+    return [...classes, props.status?.toLowerCase()]
 })
 const getIconName = computed(() => {
-    switch (className.value) {
-        case (txStatus.Success):
+    switch (classes.value[1]) {
+        case (txStatus.SUCCESS.toLowerCase()):
             return "check"
-        case (txStatus.Fail):
+        case (txStatus.FAIL.toLowerCase()):
             return "xmark"
-        case (txStatus.Error):
+        case (txStatus.ERROR.toLowerCase()):
             return "xmark"
         default:
             return "circle"
@@ -67,8 +64,7 @@ body.light-theme .loading {
 body.light-theme .success {
     background-color: $successLight;
 }
-
-.fail {
+.fail, .error {
     background-color: $warn;
 }
 </style>
