@@ -8,6 +8,5 @@ module.exports = defineConfig({
                 additionalData: `@import "@/assets/styles/main.scss";`
             }
         }
-    },
-    publicPath: "/currency-exchanger/"
+    }
 })
