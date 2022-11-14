@@ -1,4 +1,4 @@
-class LocalStorageRepository {
+export default class LocalStorageRepository {
     constructor() {
         if (this.getTheme() == null) {
             localStorage.setItem("theme", "dark")
@@ -18,5 +18,3 @@ class LocalStorageRepository {
         this.setTheme(theme === "dark" ? "light" : "dark")
     }
 }
-
-export const localStorageRepository = new LocalStorageRepository()

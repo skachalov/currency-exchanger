@@ -17,20 +17,20 @@
 import BaseTheme from "@/components/UI/BaseTheme"
 import BaseHeader from "@/components/UI/BaseHeader"
 import AppLayout from "@/components/AppLayout"
-import { localStorageRepository } from "@/services/localStorageRepository"
+import { themeVM } from "@/models/themeViewModel"
 import { onMounted, ref } from "vue"
 
 let isLight = ref(false)
 
 onMounted(() => {
-    if (localStorageRepository.getTheme() === "light") {
+    if (themeVM.getIsLightTheme()) {
         document.body.classList.toggle("light-theme")
         isLight.value = true
     }
 })
 
 function switchTheme() {
-    localStorageRepository.switchTheme()
+    themeVM.switchTheme()
     document.body.classList.toggle("light-theme")
     isLight.value = !isLight.value
 }
