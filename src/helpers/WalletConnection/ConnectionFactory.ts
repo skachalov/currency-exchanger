@@ -1,15 +1,15 @@
 import { WalletType } from "@/helpers/WalletConnection/WalletType"
 import MetaMaskConnection from "@/helpers/WalletConnection/MetaMaskConnection"
-import printError from "@/helpers/printError"
+import notificationConstructor from "@/helpers/notificationConstructor"
 
 export default class ConnectionFactory {
     static GetWalletConnection(walletType: WalletType): any {
         switch (walletType) {
-            case (WalletType.MetaMask): {
-                return new MetaMaskConnection()
+            case (WalletType.META_MASK): {
+                return notificationConstructor(1, new MetaMaskConnection())
             }
             default: {
-                printError("This type of network didn't exist")
+                return notificationConstructor(-1, "This type of network didn't exist")
             }
         }
     }

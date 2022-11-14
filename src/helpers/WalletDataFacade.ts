@@ -3,8 +3,14 @@ import { WalletType } from "@/helpers/WalletConnection/WalletType"
 import { ethers } from "ethers"
 
 export default class WalletDataFacade {
-    static async GetWalletData(walletType: WalletType): Promise<object> {
-        const connection = ConnectionFactory.GetWalletConnection(walletType)
+    static async GetWalletData(walletType: WalletType): Promise<any> {
+        let connection = ConnectionFactory.GetWalletConnection(walletType)
+
+        if (connection.status === -1) {
+            return
+        }
+
+        connection = connection.description
         const signer = connection.getSigner()
         const network = await connection.getNetwork()
         const address = await signer.getAddress()

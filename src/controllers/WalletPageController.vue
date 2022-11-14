@@ -25,7 +25,7 @@ let isLoaded = ref<boolean>(false)
 
 onMounted(async () => {
     try {
-        const walletData = await WalletDataFacade.GetWalletData(WalletType.MetaMask)
+        const walletData = await WalletDataFacade.GetWalletData(WalletType.META_MASK)
         data.value.network = walletData.network
         data.value.address = walletData.address
         data.value.balance = walletData.balance
