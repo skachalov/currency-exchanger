@@ -8,8 +8,12 @@ const routeOptions = [
         name: "WalletPageController"
     },
     {
-        path: "/send",
-        name: "SendPageController"
+        path: "/transfer",
+        name: "TransferPageController"
+    },
+    {
+        path: "/status/:hash",
+        name: "StatusPageController"
     }
 ]
 

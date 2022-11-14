@@ -37,7 +37,7 @@ onMounted(async () => {
 })
 
 function redirectToSendPage() {
-    router.push("/send")
+    router.push("/transfer")
 }
 </script>
 

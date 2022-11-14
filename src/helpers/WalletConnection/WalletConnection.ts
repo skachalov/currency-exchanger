@@ -1,4 +1,4 @@
-import {providers} from "ethers";
+import {ethers, providers} from "ethers"
 
 export default abstract class WalletConnection {
     provider: any
@@ -12,4 +12,6 @@ export default abstract class WalletConnection {
     abstract getBalance(address: string): Promise<string>
 
     abstract getNetwork(): Promise<providers.Network>
+
+    abstract getGasPrice(): Promise<ethers.BigNumber>
 }

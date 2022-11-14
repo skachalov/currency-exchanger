@@ -1,9 +1,8 @@
 <template>
-    <send-page />
+    welcome to status page!
 </template>
 
 <script setup>
-import SendPage from "@/pages/SendPage"
 </script>
 
 <style scoped>
