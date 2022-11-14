@@ -1,4 +1,9 @@
 <template>
+    <base-notification
+        :notification="notification"
+        @clearNotification="clearNotification"
+    />
+
     <base-input
         v-for="input in Object.keys(inputsData)"
         :key="inputsData[input].title"
@@ -27,13 +32,15 @@
 import BaseInput from "@/components/UI/BaseInput"
 import { defineProps, defineEmits } from "vue"
 import BaseButton from "@/components/UI/BaseButton.vue";
+import BaseNotification from "@/components/UI/BaseNotification.vue";
 
 defineProps({
-    inputsData: Object
+    inputsData: Object,
+    notification: String
 })
 
 const emits = defineEmits(["updateInputAddress", "updateInputAmount",
-    "redirectWalletPage", "transferCurrency"])
+    "redirectWalletPage", "transferCurrency", "clearNotification"])
 
 function updateInputValue(value: string, title: string) {
     switch (title) {
@@ -51,6 +58,9 @@ function redirectWalletPage() {
 function transferCurrency() {
     emits("transferCurrency")
 }
+function clearNotification() {
+    emits("clearNotification")
+}
 </script>
 
 <style scoped>
@@ -60,8 +70,5 @@ function transferCurrency() {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-.base-warning {
-    position: absolute;
 }
 </style>
