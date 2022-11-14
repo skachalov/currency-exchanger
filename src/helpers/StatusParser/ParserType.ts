@@ -1,3 +1,3 @@
 export enum ParserType {
-    GoerliEtherscan
+    GOERLI_ETHERSCAN
 }

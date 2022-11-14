@@ -25,7 +25,7 @@ export default class StatusParserGoerliEtherscan extends StatusParser {
             return status || ""
         }
         catch {
-            return txStatus.Error
+            return txStatus.ERROR
         }
     }
 
@@ -36,10 +36,10 @@ export default class StatusParserGoerliEtherscan extends StatusParser {
     ConvertStatus(status: string): string {
         switch (status) {
             case (this.statusSuccess): {
-                return txStatus.Success
+                return txStatus.SUCCESS
             }
             case (this.statusFail): {
-                return txStatus.Fail
+                return txStatus.FAIL
             }
             default: {
                 return status
