@@ -49,6 +49,9 @@ watch(() => props.notification,
     font-family: "Gilroy ExtraBold";
     padding: 10px 15px;
 }
+body.light-theme .base-notification {
+    background-color: $base0Light;
+}
 
 .notification-transition-item {
     display: inline-block;

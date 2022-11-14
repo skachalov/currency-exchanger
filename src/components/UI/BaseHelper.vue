@@ -23,4 +23,8 @@ defineProps({
     background-color: $base2;
     border-radius: 10px;
 }
+body.light-theme .base-helper {
+    color: $bgLight;
+    background-color: $base2Light;
+}
 </style>

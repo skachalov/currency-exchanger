@@ -49,11 +49,20 @@ const getIconName = computed(() => {
     color: $base1;
     font-family: "Gilroy ExtraBold";
 }
+body.light-theme .base-status {
+    color: $base1Light;
+}
 .loading {
     background-color: $waiting;
 }
+body.light-theme .loading {
+    background-color: $waitingLight;
+}
 .success {
     background-color: $success;
+}
+body.light-theme .success {
+    background-color: $successLight;
 }
 .fail, .error {
     background-color: $warn;

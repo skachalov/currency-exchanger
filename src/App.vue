@@ -1,5 +1,6 @@
 <template>
     <div id="app-container">
+        <base-theme />
         <div id="app-wrapper">
             <base-header />
             <div id="app-wrapper-content">
@@ -10,6 +11,7 @@
 </template>
 
 <script setup>
+import BaseTheme from "@/components/UI/BaseTheme"
 import BaseHeader from "@/components/UI/BaseHeader"
 import AppLayout from "@/components/AppLayout"
 </script>
@@ -19,6 +21,7 @@ import AppLayout from "@/components/AppLayout"
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+        transition: background-color .2s;
     }
 
     html, body, #app {
@@ -27,6 +30,10 @@ import AppLayout from "@/components/AppLayout"
 
     #app {
         background-color: $bg;
+    }
+
+    body.light-theme #app {
+        background-color: $bgLight;
     }
 
     #app-container {
@@ -44,6 +51,11 @@ import AppLayout from "@/components/AppLayout"
         border-radius: 20px;
         background-color: $base1;
         overflow: hidden;
+    }
+
+    body.light-theme #app-wrapper {
+        color: $base2Light;
+        background-color: $base1Light;
     }
 
     #app-wrapper-content {
