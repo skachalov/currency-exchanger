@@ -50,7 +50,6 @@ function updateInputValue(event: any) {
 }
 
 .base-input {
-    margin-top: 5px;
     padding: 10px 15px;
     background-color: $base0;
     border: none;

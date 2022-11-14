@@ -1,6 +1,6 @@
 <template>
     <div class="base-title-row">
-        {{ title }}
+        {{ title.toUpperCase() }}
     </div>
 </template>
 
@@ -15,6 +15,7 @@ defineProps({
 <style scoped>
 .base-title-row {
     font-family: "Gilroy ExtraBold";
-    font-size: 24px
+    font-size: 24px;
+    margin-bottom: 5px;
 }
 </style>
