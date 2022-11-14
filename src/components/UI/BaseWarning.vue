@@ -7,5 +7,6 @@
 <style lang="scss" scoped>
 .base-warning {
     color: $warn;
+    font-family: "Gilroy Regular";
 }
 </style>

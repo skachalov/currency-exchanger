@@ -1,4 +1,4 @@
-import { ethers } from "ethers"
+import {ethers, providers} from "ethers"
 import WalletConnection from "@/helpers/WalletConnection/WalletConnection"
 
 export default class MetaMaskConnection extends WalletConnection {
@@ -12,5 +12,17 @@ export default class MetaMaskConnection extends WalletConnection {
 
     async getAccount(): Promise<string> {
         return await this.getProvider().send("eth_requestAccounts", [])
+    }
+
+    getSigner(): providers.JsonRpcSigner {
+        return this.getProvider().getSigner()
+    }
+
+    async getBalance(address: string): Promise<string> {
+        return await this.getProvider().getBalance(address)
+    }
+
+    async getNetwork(): Promise<providers.Network> {
+        return await this.getProvider().getNetwork()
     }
 }

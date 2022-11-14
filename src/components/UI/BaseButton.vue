@@ -1,26 +1,70 @@
 <template>
-    <button
-        class="base-button"
-    >
-        <h2>Login</h2>
-    </button>
+    <div class="base-button-container">
+        <button :class="classes" >
+            <component
+                v-if="className === 'big'"
+                :is="BaseButtonTitleBig"
+                :title="title"
+            />
+            <fa v-else :icon="iconName" />
+        </button>
+        <component
+            v-if="className === 'small'"
+            :is="BaseButtonTitleSmall"
+            :title="title"
+        />
+    </div>
 </template>
 
+<script lang="ts" setup>
+import { defineProps, computed } from "vue"
+import BaseButtonTitleSmall from "@/components/UI/BaseButtonTitleSmall.vue"
+import BaseButtonTitleBig from "@/components/UI/BaseButtonTitleBig.vue"
+
+const props = defineProps({
+    title: String,
+    iconName: String,
+    className: {
+        type: String,
+        default: "small"
+    }
+})
+
+const classes = computed(() => {
+    return ["base-button", props.className]
+})
+</script>
+
 <style lang="scss" scoped>
+.base-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .base-button {
-    color: $base2;
-    background-color: $base1;
+    background-color: $base3;
+    color: $base1;
+    border: none;
+    cursor: pointer;
+    transition: .2s;
+}
+.small {
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.big {
     width: 400px;
     height: 150px;
-    border: none;
     border-radius: 20px;
-    cursor: pointer;
-}
-.base-button > h2 {
     font-size: 36px;
 }
-
-.base-button:hover {
-    background-color: rgba($base1, 0.95);
+.small:hover {
+    font-size: 24px;
+    transform: rotateZ(45deg);
+}
+.big:hover {
+    font-size: 42px;
 }
 </style>

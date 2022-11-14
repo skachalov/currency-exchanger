@@ -1,17 +1,17 @@
 <template>
-    <div id="auth-page-container">
-        <div id="auth-wrapper">
-            <base-button @click="setConnection" />
-            <div class="warning-wrapper">
-                <transition name="base-warning-transition">
-                    <base-warning
-                        v-show="isFailed"
-                    >
-                        Auth failed! Try it again.
-                    </base-warning>
-                </transition>
-            </div>
-        </div>
+    <base-button
+        :title="'Login'"
+        :class-name="'big'"
+        @click="setConnection"
+    />
+    <div class="warning-wrapper">
+        <transition name="base-warning-transition">
+            <base-warning
+                v-show="isFailed"
+            >
+                Auth failed! Try again.
+            </base-warning>
+        </transition>
     </div>
 </template>
 
@@ -35,22 +35,6 @@ function setConnection() {
 </script>
 
 <style lang="scss" scoped>
-#auth-page-container {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#auth-wrapper {
-    width: 800px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .warning-wrapper {
     height: 20px;
     margin-top: 15px;

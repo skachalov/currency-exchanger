@@ -1,13 +1,22 @@
-import AuthPageController from "@/controllers/AuthPageController.vue"
-import WalletPageController from "@/controllers/WalletPageController.vue"
-
-export const routesList = [
+const routeOptions = [
     {
-        path: '/auth',
-        component: AuthPageController
+        path: "/auth",
+        name: "AuthPageController"
     },
     {
-        path: '/wallet',
-        component: WalletPageController
+        path: "/wallet",
+        name: "WalletPageController"
+    },
+    {
+        path: "/send",
+        name: "SendPageController"
     }
 ]
+
+export const routesList = routeOptions.map(route => {
+    return {
+        ...route,
+        component: () => import(`@/controllers/${route.name}.vue`),
+        meta: { layout: route.name }
+    }
+})
