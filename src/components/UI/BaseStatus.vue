@@ -12,7 +12,7 @@ import txStatus from "@/const/txStatus"
 const props = defineProps({
     status: {
         type: String,
-        default: txStatus.LOADING
+        default: "Loading"
     }
 })
 

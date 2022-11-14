@@ -23,7 +23,7 @@
 import BaseButton from "@/components/UI/BaseButton"
 import { defineProps, defineEmits } from "vue"
 import BaseWarning from "@/components/UI/BaseWarning"
-import BaseNotification from "@/components/UI/BaseNotification";
+import BaseNotification from "@/components/UI/BaseNotification"
 
 defineProps({
     isFailed: {

@@ -1,7 +1,6 @@
 import { ParserType } from "@/helpers/StatusParser/ParserType"
-import printError from "@/helpers/printError"
 import StatusParserGoerliEtherscan from "@/helpers/StatusParser/StatusParserGoerliEtherscan"
-import notificationConstructor from "@/helpers/notificationConstructor";
+import notificationConstructor from "@/helpers/notificationConstructor"
 
 export default class StatusParserFactory {
     static GetStatusParser(parserType: ParserType): any {

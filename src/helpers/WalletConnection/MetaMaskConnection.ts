@@ -1,4 +1,4 @@
-import {ethers, providers} from "ethers"
+import { ethers, providers } from "ethers"
 import WalletConnection from "@/helpers/WalletConnection/WalletConnection"
 
 export default class MetaMaskConnection extends WalletConnection {

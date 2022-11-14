@@ -31,8 +31,8 @@
 <script lang="ts" setup>
 import BaseInput from "@/components/UI/BaseInput"
 import { defineProps, defineEmits } from "vue"
-import BaseButton from "@/components/UI/BaseButton.vue";
-import BaseNotification from "@/components/UI/BaseNotification.vue";
+import BaseButton from "@/components/UI/BaseButton.vue"
+import BaseNotification from "@/components/UI/BaseNotification.vue"
 
 defineProps({
     inputsData: Object,

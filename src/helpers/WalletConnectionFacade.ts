@@ -1,6 +1,5 @@
 import ConnectionFactory from "@/helpers/WalletConnection/ConnectionFactory"
 import { WalletType } from "@/helpers/WalletConnection/WalletType"
-import notificationConstructor from "@/helpers/notificationConstructor";
 
 export default class WalletConnectionFacade {
     static async ConnectWallet(walletType: WalletType) {
