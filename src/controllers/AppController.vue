@@ -24,15 +24,19 @@ let isLight = ref(false)
 
 onMounted(() => {
     if (themeVM.getIsLightTheme()) {
-        document.body.classList.toggle("light-theme")
+        toggleLightTheme()
         isLight.value = true
     }
 })
 
 function switchTheme() {
     themeVM.switchTheme()
-    document.body.classList.toggle("light-theme")
+    toggleLightTheme()
     isLight.value = !isLight.value
+}
+
+function toggleLightTheme() {
+    document.body.classList.toggle("light-theme")
 }
 </script>
 
