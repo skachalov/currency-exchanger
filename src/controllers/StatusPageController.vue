@@ -9,7 +9,7 @@
     />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import StatusPage from "@/pages/StatusPage"
 import { ref, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
@@ -17,12 +17,13 @@ import { GOERLI_ETHERSCAN } from "@/const/URL"
 import StatusParserFactory from "@/helpers/StatusParser/StatusParserFactory"
 import { ParserType } from "@/helpers/StatusParser/ParserType"
 import txStatus from "@/const/txStatus"
+import StatusParser from "@/helpers/StatusParser/StatusParser"
 
 const route = useRoute()
 const router = useRouter()
 
 let link = ref(GOERLI_ETHERSCAN)
-let transactionStatus = ref(txStatus.Loading)
+let transactionStatus = ref(txStatus.LOADING)
 let notification = ref("")
 
 onMounted(async () => {
@@ -49,7 +50,7 @@ onMounted(async () => {
     }, 2000)
 })
 
-async function getStatus(statusParser) {
+async function getStatus(statusParser: StatusParser) {
     return statusParser.ConvertStatus(await statusParser.GetStatus(link.value))
 }
 

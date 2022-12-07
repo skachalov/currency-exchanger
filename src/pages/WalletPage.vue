@@ -19,7 +19,7 @@
     </template>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineProps, defineEmits } from "vue"
 import WalletData from "@/components/WalletPage/WalletData.vue"
 import BaseButton from "@/components/UI/BaseButton.vue"

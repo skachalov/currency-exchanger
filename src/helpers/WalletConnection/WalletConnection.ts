@@ -1,4 +1,4 @@
-import {ethers, providers} from "ethers"
+import { ethers, providers } from "ethers"
 
 export default abstract class WalletConnection {
     provider: any

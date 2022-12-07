@@ -1,4 +1,8 @@
 <template>
+    <base-notification
+        :notification="notification"
+        @clearNotification="clearNotification"
+    />
     <base-button
         :title="'Login'"
         :class-name="'big'"
@@ -15,22 +19,27 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import BaseButton from "@/components/UI/BaseButton"
 import { defineProps, defineEmits } from "vue"
 import BaseWarning from "@/components/UI/BaseWarning"
+import BaseNotification from "@/components/UI/BaseNotification"
 
 defineProps({
     isFailed: {
         type: Boolean,
         default: false
-    }
+    },
+    notification: String
 })
 
-const emits = defineEmits(["setConnection"])
+const emits = defineEmits(["setConnection", "clearNotification"])
 
 function setConnection() {
     emits("setConnection")
+}
+function clearNotification() {
+    emits("clearNotification")
 }
 </script>
 

@@ -4,6 +4,11 @@ import { WalletType } from "@/helpers/WalletConnection/WalletType"
 export default class WalletConnectionFacade {
     static async ConnectWallet(walletType: WalletType) {
         const connection = ConnectionFactory.GetWalletConnection(walletType)
-        await connection.getAccount()
+
+        if (connection.status === -1) {
+            return connection
+        }
+
+        await connection.description.getAccount()
     }
 }

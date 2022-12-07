@@ -35,7 +35,7 @@
 import { ref, defineProps } from "vue"
 import copyText from "@/helpers/copyText"
 import BaseHelper from "@/components/UI/BaseHelper.vue"
-import BaseTitleRow from "@/components/UI/BaseTitleRow.vue";
+import BaseTitleRow from "@/components/UI/BaseTitleRow.vue"
 
 const props = defineProps({
     title: String,

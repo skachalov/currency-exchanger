@@ -1,4 +1,4 @@
-import notificationConstructor from "@/helpers/notificationConstructor";
+import notificationConstructor from "@/helpers/notificationConstructor"
 
 export default class WalletTransferFacade {
     static async TransferMoney(signer: any, transaction: any) {

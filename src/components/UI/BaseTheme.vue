@@ -9,13 +9,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue"
+import { defineProps, defineEmits } from "vue"
 
-let isLight = ref(false)
+defineProps({
+    isLight: Boolean
+})
+
+const emits = defineEmits(["switchTheme"])
 
 function switchTheme() {
-    isLight.value = !isLight.value
-    document.body.classList.toggle("light-theme")
+    emits("switchTheme")
 }
 </script>
 

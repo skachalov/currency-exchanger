@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from "vue"
 import BaseWarning from "@/components/UI/BaseWarning"
-import BaseTitleRow from "@/components/UI/BaseTitleRow.vue";
+import BaseTitleRow from "@/components/UI/BaseTitleRow.vue"
 
 const props = defineProps({
     inputValue: String,
